@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+  max-width: 100rem;
+  width: 100%;
+  padding: 0rem 1rem;
+  margin: 0px auto;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.active {
+  @apply text-base font-semibold text-slate-500;
+}
+
+.inactive {
+  @apply text-base font-semibold;
+}
