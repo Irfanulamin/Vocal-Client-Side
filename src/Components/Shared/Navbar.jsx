@@ -5,6 +5,8 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
+  console.log(user);
+
   const handleLogout = () => {
     logOut()
       .then((res) => {
@@ -17,14 +19,10 @@ const Navbar = () => {
     <header className="flex flex-col md:flex-row lg:flex-row justify-between items-center p-6 gap-6 ">
       <div className="flex justify-center items-end">
         <div>
-          <img
-            src="/logo.png"
-            alt="logo"
-            className="w-16 h-16 lg:w-24 lg:h-24"
-          />
+          <img src="/logo.png" alt="logo" className="w-16 h-16 " />
         </div>
         <div>
-          <p className="font-bold lg:text-2xl text-base">Vocal Studio</p>
+          <p className="font-bold  text-base">Vocal Studio</p>
         </div>
       </div>
       {/* Home, Instructors, Classes, Dashboard and User profile picture */}
@@ -47,12 +45,21 @@ const Navbar = () => {
         >
           Classes
         </NavLink>
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) => (isActive ? "active" : "inactive")}
-        >
-          Dashboard
-        </NavLink>
+        {user && (
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) => (isActive ? "active" : "inactive")}
+          >
+            Dashboard
+          </NavLink>
+        )}
+        {user?.photoURL && (
+          <div className="avatar online">
+            <div className="w-10 rounded-full">
+              <img src={user?.photoURL} />
+            </div>
+          </div>
+        )}
         {user ? (
           <button onClick={handleLogout} className="text-base font-semibold">
             LogOut

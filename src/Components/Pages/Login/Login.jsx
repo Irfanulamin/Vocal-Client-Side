@@ -3,6 +3,7 @@ import loginVector from "../../../assets/login.jpg";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -18,7 +19,14 @@ const Login = () => {
     signIn(data?.email, data?.password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
+        if (user) {
+          Swal.fire({
+            icon: "success",
+            title: "",
+            text: "Welcome to Vocal Studio!",
+          });
+          reset();
+        }
       })
       .catch((err) => console.log(err.message));
   };
