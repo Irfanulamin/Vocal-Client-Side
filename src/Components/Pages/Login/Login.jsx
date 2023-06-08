@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import loginVector from "../../../assets/login.jpg";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
   const [hiddenOrVisible, setHiddenOrVisible] = useState(false);
   const {
     register,
@@ -11,13 +13,22 @@ const Login = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    signIn(data?.email, data?.password)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center gap-14 w-full p-24">
       <div className="w-full lg:w-1/2 ">
         <img src={loginVector} />
       </div>
-      <div className="w-full lg:w-1/2 bg-base-100 border rounded-lg border-black">
+      <div className="w-full lg:w-1/2 bg-base-100 border rounded-lg border-indigo-600">
         <form className="p-11" onSubmit={handleSubmit(onSubmit)}>
           <h4 className=" tracking-wide text-indigo-600 text-6xl font-semibold text-center py-12">
             Login

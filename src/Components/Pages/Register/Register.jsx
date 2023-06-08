@@ -1,30 +1,48 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import loginVector from "../../../assets/login.jpg";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Register = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+
   const [hiddenOrVisible, setHiddenOrVisible] = useState(false);
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    const name = data.name;
-    const photoUrl = data.photoUrl;
-    const email = data.email;
-    const password = data.password;
-    const confirmPassword = data.confirmPassword;
-    console.log(name, photoUrl, email, password, confirmPassword);
-    if (confirmPassword !== password) {
+    if (data?.confirmPassword !== data?.password) {
       Swal.fire({
         icon: "error",
         title: "",
         text: "Your Confirm Password Doesn't match!",
       });
+    } else {
+      createUser(data?.email, data?.password)
+        .then((res) => {
+          const user = res.user;
+          if (user) {
+            updateUserProfile(data?.name, data?.photoUrl)
+              .then(() => {})
+              .catch((err) => {
+                console.log(err.message);
+              });
+            Swal.fire({
+              icon: "success",
+              title: "",
+              text: "Welcome to Vocal Studio!",
+            });
+            reset();
+          }
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -149,7 +167,7 @@ const Register = () => {
           </div>
           <input
             type="submit"
-            value="Login"
+            value="Register"
             className="hover:bg-white transition-all hover:text-indigo-600 bg-indigo-600 text-white w-full py-3 rounded-md font-semibold text-xl"
           />
         </form>

@@ -14,7 +14,7 @@
 }
 
 .active {
-  @apply text-base font-semibold text-slate-500;
+  @apply text-base font-semibold text-yellow-500;
 }
 
 .inactive {
