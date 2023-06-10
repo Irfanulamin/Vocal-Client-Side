@@ -1,0 +1,112 @@
+[
+  {
+    "instructor_name": "John Smith",
+    "email": "john.smith@example.com",
+    "class_name": "Guitar Basics",
+    "class_image": "https://i.ibb.co/9cV81V4/3.jpg",
+    "students": 15,
+    "available_seats": 5,
+    "class_price": 50,
+    "instructor_image": "https://i.ibb.co/MMb3mz6/2.jpg",
+    "popularity": "popular"
+  },
+  {
+    "instructor_name": "Emily Johnson",
+    "email": "emily.johnson@example.com",
+    "class_name": "Piano Mastery",
+    "class_image": "https://i.ibb.co/tqt3Mvs/5.jpg",
+    "students": 10,
+    "available_seats": 10,
+    "class_price": 60,
+    "instructor_image": "https://i.ibb.co/KmxkcGN/1.jpg",
+    "popularity": "not popular"
+  },
+  {
+    "instructor_name": "David Rodriguez",
+    "email": "david.rodriguez@example.com",
+    "class_name": "Drumming Essentials",
+    "class_image": "https://i.ibb.co/ZSPWvkN/4.jpg",
+    "students": 8,
+    "available_seats": 12,
+    "class_price": 40,
+    "instructor_image": "https://i.ibb.co/RN7rTnb/4.jpg",
+    "popularity": "not popular"
+  },
+  {
+    "instructor_name": "Michael Lee",
+    "email": "michael.lee@example.com",
+    "class_name": "Jazz Improvisation",
+    "class_image": "https://i.ibb.co/hsgV5Mw/2.jpg",
+    "students": 12,
+    "available_seats": 8,
+    "class_price": 70,
+    "instructor_image": "https://i.ibb.co/ccDFDHX/10.jpg",
+    "popularity": "popular"
+  },
+  {
+    "instructor_name": "Laura Baker",
+    "email": "laura.baker@example.com",
+    "class_name": "Violin Basics",
+    "class_image": "https://i.ibb.co/Zg3qG2S/IMG-8158.jpg",
+    "students": 6,
+    "available_seats": 14,
+    "class_price": 55,
+    "instructor_image": "https://i.ibb.co/KryFC57/3.jpg",
+    "popularity": "not popular"
+  },
+  {
+    "instructor_name": "Robert Davis",
+    "email": "robert.davis@example.com",
+    "class_name": "Music Theory",
+    "class_image": "https://i.ibb.co/hFQN5BS/photo-1507838153414-b4b713384a76-ixlib-rb-4-0.jpg",
+    "students": 18,
+    "available_seats": 2,
+    "class_price": 30,
+    "instructor_image": "https://i.ibb.co/HdssqXf/6.jpg",
+    "popularity": "popular"
+  },
+  {
+    "instructor_name": "Jennifer Adams",
+    "email": "jennifer.adams@example.com",
+    "class_name": "Saxophone Techniques",
+    "class_image": "https://i.ibb.co/xmD4x31/IMG-8157-AVIF.jpg",
+    "students": 4,
+    "available_seats": 16,
+    "class_price": 65,
+    "instructor_image": "https://i.ibb.co/rHxXfmh/5.jpg",
+    "popularity": "not popular"
+  },
+  {
+    "instructor_name": "Daniel Martinez",
+    "email": "daniel.martinez@example.com",
+    "class_name": "Bass Guitar Workshop",
+    "class_image": "https://i.ibb.co/F5RbZnS/IMG-8155.jpg",
+    "students": 9,
+    "available_seats": 11,
+    "class_price": 50,
+    "instructor_image": "https://i.ibb.co/rMmgY1M/9.jpg",
+    "popularity": "not popular"
+  },
+  {
+    "instructor_name": "Amanda Collins",
+    "email": "amanda.collins@example.com",
+    "class_name": "Flute Basics",
+    "class_image": "https://images.unsplash.com/photo-1580719653258-26873fde0b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    "students": 14,
+    "available_seats": 6,
+    "class_price": 45,
+    "instructor_image": "https://i.ibb.co/x7CL5tq/7.jpg",
+    "popularity": "not popular"
+  },
+  {
+    "instructor_name": "Ryan Turner",
+    "email": "ryan.turner@example.com",
+    "class_name": "Trumpet Fundamentals",
+    "class_image": "https://i.ibb.co/7RzZKmB/photo-1573871666457-7c7329118cf9-ixlib-rb-4-0.jpg",
+    "students": 7,
+    "available_seats": 13,
+    "class_price": 55,
+    "instructor_image": "https://i.ibb.co/7Q42NyY/8.jpg",
+    "popularity": "not popular"
+  }
+]
