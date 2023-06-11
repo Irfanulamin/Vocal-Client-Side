@@ -3,6 +3,7 @@ import ClassCard from "./ClassCard";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
@@ -51,11 +52,15 @@ const Classes = () => {
       axios
         .post("http://localhost:5000/selectedItems", item)
         .then((response) => {
-          // Handle the response data
-          console.log(response.data);
+          if (response.data.insertedId) {
+            Swal.fire({
+              icon: "success",
+              title: "",
+              text: "Added To Cart!",
+            });
+          }
         })
         .catch((error) => {
-          // Handle any errors
           console.error(error);
         });
     } else {
