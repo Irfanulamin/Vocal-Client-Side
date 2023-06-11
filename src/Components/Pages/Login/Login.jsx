@@ -1,11 +1,16 @@
 import React, { useContext, useState } from "react";
 import loginVector from "../../../assets/login.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const { signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const { signIn } = useContext(AuthContext);
   const [hiddenOrVisible, setHiddenOrVisible] = useState(false);
   const {
@@ -14,6 +19,7 @@ const Login = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
     signIn(data?.email, data?.password)
@@ -29,6 +35,28 @@ const Login = () => {
         }
       })
       .catch((err) => console.log(err.message));
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle().then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      const saveUser = {
+        name: loggedInUser.displayName,
+        email: loggedInUser.email,
+      };
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+        });
+    });
   };
 
   return (
@@ -99,6 +127,12 @@ const Login = () => {
             value="Login"
             className="hover:bg-white transition-all hover:text-indigo-600 bg-indigo-600 text-white w-full py-3 rounded-md font-semibold text-xl"
           />
+          <div className="w-full flex justify-center items-center p-6">
+            <FcGoogle
+              onClick={handleGoogleSignIn}
+              className=" w-12 h-12"
+            ></FcGoogle>
+          </div>
         </form>
       </div>
     </div>

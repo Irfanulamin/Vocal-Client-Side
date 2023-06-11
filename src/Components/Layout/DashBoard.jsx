@@ -48,12 +48,20 @@ const DashBoard = () => {
                 to="/dashboard/allusers"
                 className="text-2xl font-semibold text-white"
               >
-                All Users
+                Manage Users
               </Link>
             </li>
             <li>
               <Link
                 to="/dashboard/addClasses"
+                className="text-2xl font-semibold text-white"
+              >
+                Add Classes
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/manageClasses"
                 className="text-2xl font-semibold text-white"
               >
                 Add Classes
