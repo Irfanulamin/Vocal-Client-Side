@@ -3,7 +3,7 @@ import useCart from "../../../hooks/useCart";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const MyCart = () => {
+const MySelectedClasses = () => {
   const [cart, refetch] = useCart();
 
   const totalPrice = cart.reduce(
@@ -130,4 +130,4 @@ const MyCart = () => {
   );
 };
 
-export default MyCart;
+export default MySelectedClasses;

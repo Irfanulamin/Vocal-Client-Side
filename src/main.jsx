@@ -10,10 +10,12 @@ import AuthProvider from "./AuthProvider/AuthProvider";
 import Instructors from "./Components/Pages/Instructors/Instructors";
 import Classes from "./Components/Pages/Classes/Classes";
 import DashBoard from "./Components/Layout/DashBoard";
-import MyCart from "./Components/DashboardPages/MyCart/MyCart";
+import MySelectedClasses from "./Components/DashboardPages/MySelectedClasses/MySelectedClasses";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AllUsers from "./Components/DashboardPages/AllUsers/AllUsers";
 import AddClasses from "./Components/DashboardPages/AddClasses/AddClasses";
+import ManageClasses from "./Components/DashboardPages/ManageClasses/ManageClasses";
+import MyClasses from "./Components/DashboardPages/My Class/MyClasses";
 
 const router = createBrowserRouter([
   {
@@ -47,8 +49,8 @@ const router = createBrowserRouter([
     element: <DashBoard></DashBoard>,
     children: [
       {
-        path: "mycart",
-        element: <MyCart></MyCart>,
+        path: "selectedClasses",
+        element: <MySelectedClasses></MySelectedClasses>,
       },
       {
         path: "allusers",
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
       {
         path: "addClasses",
         element: <AddClasses></AddClasses>,
+      },
+      {
+        path: "manageClasses",
+        element: <ManageClasses></ManageClasses>,
+      },
+      {
+        path: "myClasses",
+        element: <MyClasses></MyClasses>,
       },
     ],
   },

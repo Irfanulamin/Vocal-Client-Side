@@ -37,10 +37,10 @@ const DashBoard = () => {
 
             <li>
               <Link
-                to="/dashboard/mycart"
+                to="/dashboard/selectedClasses"
                 className="text-2xl font-semibold text-white"
               >
-                My Cart
+                My Selected Classes
               </Link>
             </li>
             <li>
@@ -56,7 +56,7 @@ const DashBoard = () => {
                 to="/dashboard/addClasses"
                 className="text-2xl font-semibold text-white"
               >
-                Add Classes
+                Add A Class
               </Link>
             </li>
             <li>
@@ -64,7 +64,15 @@ const DashBoard = () => {
                 to="/dashboard/manageClasses"
                 className="text-2xl font-semibold text-white"
               >
-                Add Classes
+                Manage Classes
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/myClasses"
+                className="text-2xl font-semibold text-white"
+              >
+                MY Classes
               </Link>
             </li>
           </ul>

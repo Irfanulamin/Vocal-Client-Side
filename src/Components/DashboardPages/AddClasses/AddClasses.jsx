@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddClasses = () => {
   const { user } = useContext(AuthContext);
@@ -21,8 +23,25 @@ const AddClasses = () => {
       email,
       available_seats,
       price,
+      status: "pending",
     };
     console.log(item);
+
+    axios
+      .post("http://localhost:5000/pendingClasses", item)
+      .then((response) => {
+        if (response.data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "",
+            text: "wait for admin approval!",
+          });
+        }
+      })
+      .catch((error) => {
+        // Handle the error
+        console.error(error);
+      });
   };
 
   return (

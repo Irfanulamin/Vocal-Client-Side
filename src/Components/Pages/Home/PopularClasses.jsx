@@ -26,6 +26,7 @@ const PopularClasses = () => {
         {classes.map((classDetails) => (
           <img
             src={classDetails?.class_image}
+            loading="lazy"
             className="w-full h-72 object-cover"
           />
         ))}
