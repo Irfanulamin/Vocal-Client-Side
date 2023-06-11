@@ -26,7 +26,7 @@ const AddClasses = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full p-10">
       <form onSubmit={handleSubmit}>
         <div className="form-control">
           <label className="label">

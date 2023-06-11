@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const DashBoard = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <div className="drawer lg:drawer-open ">
@@ -18,12 +20,21 @@ const DashBoard = () => {
         </div>
         <div className="drawer-side ">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 h-full  bg-yellow-600 text-base-content">
+          <ul className="menu p-4 w-80 h-full  bg-slate-600 ">
             <li className="w-full flex items-center">
-              <Link to="/">
-                <img src="/logo.png" className="h-32 w-100%" />
-              </Link>
+              <div className="avatar">
+                <div className="w-24 rounded-full">
+                  <img src={user?.photoURL} />
+                </div>
+              </div>
+              <span className="text-lg font-semibold text-black">
+                {user?.displayName}
+              </span>
+              <span className="text-green-600 text-lg font-semibold">
+                {user?.role ? user?.role : "student"}
+              </span>
             </li>
+
             <li>
               <Link
                 to="/dashboard/mycart"
