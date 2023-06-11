@@ -1,7 +1,8 @@
 import React from "react";
 
-const ClassCard = ({ classDetails }) => {
+const ClassCard = ({ classDetails, handleSelect }) => {
   const {
+    _id,
     class_name,
     class_image,
     class_price,
@@ -26,7 +27,10 @@ const ClassCard = ({ classDetails }) => {
       <p className="text-base font-semibold">
         Price: <span className=" text-green-600">{class_price}$</span>
       </p>
-      <button className="w-full bg-yellow-500 my-2 py-2 tracking-widest font-medium  text-xl hover:bg-black text-white transition">
+      <button
+        onClick={() => handleSelect(_id)}
+        className="w-full bg-yellow-500 my-2 py-2 tracking-widest font-medium  text-xl hover:bg-black text-white transition"
+      >
         Select
       </button>
     </div>

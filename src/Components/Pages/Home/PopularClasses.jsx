@@ -10,7 +10,7 @@ const PopularClasses = () => {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch("/instructors.json")
+    fetch("http://localhost:5000/classes")
       .then((res) => res.json())
       .then((data) => {
         data.sort((a, b) => b.students - a.students);
