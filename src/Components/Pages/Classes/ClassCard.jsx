@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ClassCard = ({ classDetails, handleSelect }) => {
+  const [disable, setDisable] = useState(false);
+
+  const handleBothClicks = (id) => {
+    handleSelect(id);
+    setDisable(true);
+  };
+
   const {
     _id,
     class_name,
@@ -28,8 +35,10 @@ const ClassCard = ({ classDetails, handleSelect }) => {
         Price: <span className=" text-green-600">{class_price}$</span>
       </p>
       <button
-        onClick={() => handleSelect(_id)}
-        className="w-full bg-yellow-500 my-2 py-2 tracking-widest font-medium  text-xl hover:bg-black text-white transition"
+        onClick={() => handleBothClicks(_id)}
+        className={`${
+          disable ? "btn-disabled bg-slate-200 text-slate-400" : ""
+        } w-full bg-yellow-500 my-2 py-2 tracking-widest font-medium  text-xl hover:bg-black text-white transition`}
       >
         Select
       </button>

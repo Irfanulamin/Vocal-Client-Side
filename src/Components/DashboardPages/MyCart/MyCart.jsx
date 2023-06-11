@@ -63,11 +63,8 @@ const MyCart = () => {
                 <th>{index + 1}</th>
                 <td>
                   <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src={classDetails?.class_image}
-                        alt="Avatar Tailwind CSS Component"
-                      />
+                    <div className="mask  w-24 h-24 border border-black">
+                      <img src={classDetails?.class_image} />
                     </div>
                   </div>
                 </td>

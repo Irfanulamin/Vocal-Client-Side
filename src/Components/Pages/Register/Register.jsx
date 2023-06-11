@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import loginVector from "../../../assets/login.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const [hiddenOrVisible, setHiddenOrVisible] = useState(false);
 
   const {
@@ -18,28 +19,40 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    if (data?.confirmPassword !== data?.password) {
+    if (data.confirmPassword !== data.password) {
       Swal.fire({
         icon: "error",
         title: "",
         text: "Your Confirm Password Doesn't match!",
       });
     } else {
-      createUser(data?.email, data?.password)
+      createUser(data.email, data.password)
         .then((res) => {
           const user = res.user;
           if (user) {
-            updateUserProfile(data?.name, data?.photoUrl)
-              .then(() => {})
+            updateUserProfile(data.name, data.photoUrl)
+              .then(() => {
+                const saveUser = { name: data.name, email: data.email };
+                axios
+                  .post("http://localhost:5000/users", saveUser)
+                  .then((response) => {
+                    if (response.data.insertedId) {
+                      Swal.fire({
+                        icon: "success",
+                        title: "",
+                        text: "Welcome to Vocal Studio!",
+                      });
+                      reset();
+                      navigate("/");
+                    }
+                  })
+                  .catch((error) => {
+                    console.error(error);
+                  });
+              })
               .catch((err) => {
                 console.log(err.message);
               });
-            Swal.fire({
-              icon: "success",
-              title: "",
-              text: "Welcome to Vocal Studio!",
-            });
-            reset();
           }
         })
         .catch((err) => console.log(err));
