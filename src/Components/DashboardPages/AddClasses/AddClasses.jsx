@@ -1,101 +1,104 @@
 import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const AddClasses = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
-  const { register, handleSubmit, reset } = useForm();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const class_name = form.class_name.value;
+    const class_image = form.class_name.value;
+    const instructor_name = form.instructor_name.value;
+    const email = form.email.value;
+    const available_seats = form.available_seats.value;
+    const price = form.price.value;
 
-  const onSubmit = (data) => {
-    console.log(data);
+    const item = {
+      class_image,
+      class_name,
+      instructor_name,
+      email,
+      available_seats,
+      price,
+    };
+    console.log(item);
   };
 
   return (
-    <div className="w-full p-10">
-      <h2 className="text-center font-semibold text-black text-3xl py-12 border-2 border-black mb-7">
-        ADD A CLASS
-      </h2>
-      <from className="w-full" onSubmit={handleSubmit(onSubmit)}>
+    <div className="w-full">
+      <form onSubmit={handleSubmit}>
         <div className="form-control">
           <label className="label">
-            <span className="text-lg font-semibold text-black">Class Name</span>
+            <span className="label-text">Class Name</span>
           </label>
           <input
             type="text"
-            placeholder="Class Name"
+            name="class_name"
+            placeholder=""
             className="input input-bordered"
-            {...register("className", { required: true })}
           />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="text-lg font-semibold text-black">
-              Class Image
-            </span>
+            <span className="label-text">Class Image</span>
           </label>
           <input
             type="text"
-            placeholder="Class Image"
+            name="class_image"
+            placeholder=""
             className="input input-bordered"
-            {...register("classImage", { required: true })}
           />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="text-lg font-semibold text-black">
-              Instructor Name
-            </span>
+            <span className="label-text">Name</span>
           </label>
           <input
             type="text"
-            defaultValue={user?.displayName}
             disabled
-            placeholder="Instructor Name"
+            defaultValue={user?.displayName}
+            name="instructor_name"
+            placeholder=""
             className="input input-bordered"
-            {...register("instructorName", { required: true })}
           />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="text-lg font-semibold text-black">
-              Instructor Email
-            </span>
+            <span className="label-text">Email</span>
           </label>
           <input
-            type="text"
             defaultValue={user?.email}
             disabled
-            placeholder="Instructor Email"
+            type="text"
+            name="email"
+            placeholder=""
             className="input input-bordered"
-            {...register("instructorEmail", { required: true })}
           />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="text-lg font-semibold text-black">
-              Available Seats
-            </span>
+            <span className="label-text">Available Seats</span>
           </label>
           <input
-            type="text"
-            placeholder="Available Seat"
+            type="number"
+            name="available_seats"
+            placeholder=""
             className="input input-bordered"
-            {...register("availableSeat", { required: true })}
           />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="text-lg font-semibold text-black">Price</span>
+            <span className="label-text">Price</span>
           </label>
           <input
-            type="text"
-            placeholder="Price"
+            type="number"
+            name="price"
+            placeholder=""
             className="input input-bordered"
-            {...register("price", { required: true })}
           />
         </div>
+
         <div className="py-5">
           <input
             type="submit"
@@ -103,7 +106,7 @@ const AddClasses = () => {
             className="w-full bg-black py-3 text-white rounded text-xl font-semibold hover:bg-transparent hover:text-black transition-all"
           />
         </div>
-      </from>
+      </form>
     </div>
   );
 };
