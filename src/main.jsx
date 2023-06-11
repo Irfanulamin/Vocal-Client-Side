@@ -12,6 +12,8 @@ import Classes from "./Components/Pages/Classes/Classes";
 import DashBoard from "./Components/Layout/DashBoard";
 import MyCart from "./Components/DashboardPages/MyCart/MyCart";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AllUsers from "./Components/DashboardPages/AllUsers/AllUsers";
+import AddClasses from "./Components/DashboardPages/AddClasses/AddClasses";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: "mycart",
         element: <MyCart></MyCart>,
+      },
+      {
+        path: "allusers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "addClasses",
+        element: <AddClasses></AddClasses>,
       },
     ],
   },

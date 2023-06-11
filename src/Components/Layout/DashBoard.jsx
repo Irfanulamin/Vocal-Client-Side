@@ -33,7 +33,20 @@ const DashBoard = () => {
               </Link>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+              <Link
+                to="/dashboard/allusers"
+                className="text-2xl font-semibold text-white"
+              >
+                All Users
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/addClasses"
+                className="text-2xl font-semibold text-white"
+              >
+                Add Classes
+              </Link>
             </li>
           </ul>
         </div>
