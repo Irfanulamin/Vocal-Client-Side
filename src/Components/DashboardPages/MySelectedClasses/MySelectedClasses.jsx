@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const MySelectedClasses = () => {
-  const [cart, refetch] = useCart();
+  const [cart, refetch, error] = useCart();
 
   const amount = cart.reduce(
     (sum, classDetails) => sum + classDetails.class_price,
