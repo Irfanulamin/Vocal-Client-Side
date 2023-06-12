@@ -8,7 +8,12 @@ const useCart = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/selectedItems?userEmail=${user?.email}`
+        `http://localhost:5000/selectedItems?userEmail=${user?.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+        }
       );
       return res.json();
     },
