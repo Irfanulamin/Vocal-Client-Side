@@ -75,6 +75,14 @@ const DashBoard = () => {
                 MY Classes
               </Link>
             </li>
+            <li>
+              <Link
+                to="/dashboard/payment"
+                className="text-2xl font-semibold text-white"
+              >
+                Payment
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

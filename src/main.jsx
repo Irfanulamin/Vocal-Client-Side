@@ -16,6 +16,7 @@ import AllUsers from "./Components/DashboardPages/AllUsers/AllUsers";
 import AddClasses from "./Components/DashboardPages/AddClasses/AddClasses";
 import ManageClasses from "./Components/DashboardPages/ManageClasses/ManageClasses";
 import MyClasses from "./Components/DashboardPages/My Class/MyClasses";
+import Payment from "./Components/DashboardPages/CheckoutForm/Payment";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "myClasses",
         element: <MyClasses></MyClasses>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
     ],
   },

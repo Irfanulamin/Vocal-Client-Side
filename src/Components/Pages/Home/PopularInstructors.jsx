@@ -21,6 +21,7 @@ const PopularInstructors = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {instructor.map((instructorImage) => (
           <img
+            loading="lazy"
             src={instructorImage?.instructor_image}
             className="w-full h-72 object-cover"
           />
