@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import "./card.css";
+import axios from "axios";
 
 const CheckoutForm = ({ cart, totalPrice }) => {
   const { user } = useContext(AuthContext);
@@ -76,13 +77,14 @@ const CheckoutForm = ({ cart, totalPrice }) => {
         email: user?.email,
         transactionID: paymentIntent.id,
         totalPrice,
-        data: new Date(),
+        date: new Date(),
         orderStatus: "Service Pending",
         quantity: cart.length,
         items: cart.map((item) => item._id),
-        itemNames: cart.map((item) => item.name),
+        itemNames: cart.map((item) => item.class_name),
+        image: cart.map((item) => item.class_image),
       };
-      axiosSecure.post("/payments", payment).then((res) => {
+      axios.post("http://localhost:5000/payments", payment).then((res) => {
         if (res.data.insertedId) {
           alert("done");
         }
@@ -93,6 +95,7 @@ const CheckoutForm = ({ cart, totalPrice }) => {
   return (
     <>
       <form className="w-2/3" onSubmit={handleSubmit}>
+        <h2 className="text-lg">Please put your Card Details here.</h2>
         <CardElement
           options={{
             style: {
@@ -109,7 +112,11 @@ const CheckoutForm = ({ cart, totalPrice }) => {
             },
           }}
         />
-        <button type="submit" disabled={!stripe || !clientSecret || processing}>
+        <button
+          type="submit"
+          className="px-7"
+          disabled={!stripe || !clientSecret || processing}
+        >
           Pay
         </button>
       </form>

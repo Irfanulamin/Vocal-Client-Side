@@ -17,6 +17,8 @@ import AddClasses from "./Components/DashboardPages/AddClasses/AddClasses";
 import ManageClasses from "./Components/DashboardPages/ManageClasses/ManageClasses";
 import MyClasses from "./Components/DashboardPages/My Class/MyClasses";
 import Payment from "./Components/DashboardPages/CheckoutForm/Payment";
+import MyEnrolledClasses from "./Components/DashboardPages/MyEnrolledClasses/MyEnrolledClasses";
+import PaymentHistory from "./Components/DashboardPages/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "myEnrolledClasses",
+        element: <MyEnrolledClasses></MyEnrolledClasses>,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
       },
     ],
   },

@@ -2,6 +2,7 @@ import React from "react";
 import useCart from "../../../hooks/useCart";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MySelectedClasses = () => {
   const [cart, refetch, error] = useCart();
@@ -51,7 +52,6 @@ const MySelectedClasses = () => {
         <>
           <div className="overflow-x-auto ">
             <table className="table">
-              {/* head */}
               <thead>
                 <tr>
                   <th></th>
@@ -115,17 +115,25 @@ const MySelectedClasses = () => {
               </tbody>
             </table>
           </div>
+          <hr className="border-2 border-black" />
           <div className="p-4 flex justify-end w-full">
             <div>
               <p className="text-lg font-semibold">
-                Total Price:{" "}
-                <span className="text-green-600">{totalPrice}$</span>
+                Total Price:
+                <span className="text-green-600"> {totalPrice}$</span>
               </p>
             </div>
           </div>
-          <button className="bg-black w-full text-white font-semibold text-lg py-1 rounded hover:bg-white hover:text-black transition-all">
-            Pay
-          </button>
+          <div className="flex justify-end ">
+            <div>
+              <Link
+                to="/dashboard/payment"
+                className="bg-black w-full px-7 text-white font-semibold text-lg py-1 rounded hover:bg-white hover:text-black transition-all"
+              >
+                Pay
+              </Link>
+            </div>
+          </div>
         </>
       )}
     </div>

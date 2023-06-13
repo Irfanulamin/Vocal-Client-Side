@@ -83,6 +83,22 @@ const DashBoard = () => {
                 Payment
               </Link>
             </li>
+            <li>
+              <Link
+                to="/dashboard/myEnrolledClasses"
+                className="text-2xl font-semibold text-white"
+              >
+                My Enrolled Class
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/paymentHistory"
+                className="text-2xl font-semibold text-white"
+              >
+                My Payment History
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
