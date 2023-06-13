@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const MyClasses = () => {
   const [classes, setClasses] = useState([]);
@@ -9,27 +10,8 @@ const MyClasses = () => {
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
-
-  const handleModal = () => {
-    //todo will get data
-  };
-
   return (
     <>
-      {/* Open the modal using ID.showModal() method */}
-      <button className="btn">open modal</button>
-      <dialog id="my_modal_1" className="modal">
-        <form method="dialog" className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">
-            Press ESC key or click the button below to close
-          </p>
-          <div className="modal-action">
-            {/* if there is a button in form, it will close the modal */}
-            <button className="btn">Close</button>
-          </div>
-        </form>
-      </dialog>
       <div>
         <div className="overflow-x-auto p-10">
           <table className="table table-xs table-pin-rows table-pin-cols">
@@ -38,6 +20,7 @@ const MyClasses = () => {
                 <th></th>
                 <td>Image</td>
                 <td>Name</td>
+                <td>Price</td>
                 <td>Instructor</td>
                 <td>Status</td>
                 <td>Total Enrolled</td>
@@ -61,6 +44,9 @@ const MyClasses = () => {
                     </span>
                   </td>
                   <td>
+                    <span className="text-base ">{classDetails?.price}</span>
+                  </td>
+                  <td>
                     <span className="text-base ">
                       {classDetails?.instructor_name}
                     </span>
@@ -72,9 +58,11 @@ const MyClasses = () => {
                   <td></td>
                   {/* //put */}
                   <td>
-                    <button onClick={() => window.my_modal_1.showModal()}>
+                    <Link
+                      to={`/dashboard/updateSingleClass/${classDetails?._id}`}
+                    >
                       Update
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

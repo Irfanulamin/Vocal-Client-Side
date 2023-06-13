@@ -19,6 +19,7 @@ import MyClasses from "./Components/DashboardPages/My Class/MyClasses";
 import Payment from "./Components/DashboardPages/CheckoutForm/Payment";
 import MyEnrolledClasses from "./Components/DashboardPages/MyEnrolledClasses/MyEnrolledClasses";
 import PaymentHistory from "./Components/DashboardPages/PaymentHistory/PaymentHistory";
+import ModifyClassDetails from "./Components/DashboardPages/ModifyClassDetails/ModifyClassDetails";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "updateSingleClass/:id",
+        element: <ModifyClassDetails></ModifyClassDetails>,
       },
     ],
   },
