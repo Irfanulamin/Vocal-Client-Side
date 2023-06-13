@@ -36,7 +36,11 @@ const Register = () => {
           if (user) {
             updateUserProfile(data.name, data.photoUrl)
               .then(() => {
-                const saveUser = { name: data.name, email: data.email };
+                const saveUser = {
+                  name: data.name,
+                  email: data.email,
+                  role: "student",
+                };
                 axios
                   .post("http://localhost:5000/users", saveUser)
                   .then((response) => {

@@ -13,7 +13,7 @@ const MyClasses = () => {
   return (
     <>
       <div>
-        <div className="overflow-x-auto p-10">
+        <div className="overflow-x-auto p-4">
           <table className="table table-xs table-pin-rows table-pin-cols">
             <thead>
               <tr>
@@ -39,25 +39,31 @@ const MyClasses = () => {
                     />
                   </td>
                   <td>
-                    <span className="text-base ">
+                    <span className="text-base  font-semibold">
                       {classDetails?.class_name}
                     </span>
                   </td>
                   <td>
-                    <span className="text-base ">{classDetails?.price}</span>
+                    <span className="text-base text-green-600  font-semibold">
+                      {classDetails?.price}$
+                    </span>
                   </td>
                   <td>
-                    <span className="text-base ">
+                    <span className="text-base  font-semibold">
                       {classDetails?.instructor_name}
                     </span>
                   </td>
                   <td>
-                    <span className="text-base ">{classDetails?.status}</span>
+                    <span className="text-base text-blue-600 font-semibold">
+                      {classDetails?.status}
+                    </span>
                   </td>
                   <td>0</td>
                   <td>
                     {classDetails?.feedback ? (
-                      <p className="text-green-600">{classDetails?.feedback}</p>
+                      <p className="text-green-600 font-semibold p-4">
+                        {classDetails?.feedback}
+                      </p>
                     ) : (
                       <></>
                     )}
@@ -66,7 +72,7 @@ const MyClasses = () => {
                   <td>
                     <Link
                       to={`/dashboard/updateSingleClass/${classDetails?._id}`}
-                      className="p-2 bg-yellow-500 text-white"
+                      className="p-2 bg-yellow-500 text-white font-semibold hover:bg-transparent hover:text-yellow-400 transition-all rounded"
                     >
                       Update
                     </Link>

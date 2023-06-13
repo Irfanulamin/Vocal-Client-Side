@@ -32,6 +32,7 @@ const Login = () => {
             text: "Welcome to Vocal Studio!",
           });
           reset();
+          navigate(from, { replace: true });
         }
       })
       .catch((err) => console.log(err.message));
@@ -44,6 +45,7 @@ const Login = () => {
       const saveUser = {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
+        role: "student",
       };
       fetch("http://localhost:5000/users", {
         method: "POST",

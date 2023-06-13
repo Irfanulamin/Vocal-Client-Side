@@ -20,6 +20,10 @@ import Payment from "./Components/DashboardPages/CheckoutForm/Payment";
 import MyEnrolledClasses from "./Components/DashboardPages/MyEnrolledClasses/MyEnrolledClasses";
 import PaymentHistory from "./Components/DashboardPages/PaymentHistory/PaymentHistory";
 import ModifyClassDetails from "./Components/DashboardPages/ModifyClassDetails/ModifyClassDetails";
+import AdminRoute from "./PrivateRoutes/AdminRoute";
+import StudentRoute from "./PrivateRoutes/StudentRoute";
+import PrivateRoute from "./PrivateRoutes/PrivateRoute";
+import InstructorRoute from "./PrivateRoutes/InstructorRoute";
 
 const router = createBrowserRouter([
   {
@@ -50,43 +54,83 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashBoard></DashBoard>,
+    element: (
+      <PrivateRoute>
+        <DashBoard></DashBoard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "selectedClasses",
-        element: <MySelectedClasses></MySelectedClasses>,
+        element: (
+          <StudentRoute>
+            <MySelectedClasses></MySelectedClasses>
+          </StudentRoute>
+        ),
       },
       {
         path: "allusers",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "addClasses",
-        element: <AddClasses></AddClasses>,
+        element: (
+          <InstructorRoute>
+            <AddClasses></AddClasses>
+          </InstructorRoute>
+        ),
       },
       {
         path: "manageClasses",
-        element: <ManageClasses></ManageClasses>,
+        element: (
+          <AdminRoute>
+            <ManageClasses></ManageClasses>
+          </AdminRoute>
+        ),
       },
       {
         path: "myClasses",
-        element: <MyClasses></MyClasses>,
+        element: (
+          <InstructorRoute>
+            <MyClasses></MyClasses>
+          </InstructorRoute>
+        ),
       },
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: (
+          <StudentRoute>
+            <Payment></Payment>
+          </StudentRoute>
+        ),
       },
       {
         path: "myEnrolledClasses",
-        element: <MyEnrolledClasses></MyEnrolledClasses>,
+        element: (
+          <StudentRoute>
+            <MyEnrolledClasses></MyEnrolledClasses>
+          </StudentRoute>
+        ),
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
+        element: (
+          <StudentRoute>
+            <PaymentHistory></PaymentHistory>
+          </StudentRoute>
+        ),
       },
       {
         path: "updateSingleClass/:id",
-        element: <ModifyClassDetails></ModifyClassDetails>,
+        element: (
+          <InstructorRoute>
+            <ModifyClassDetails></ModifyClassDetails>
+          </InstructorRoute>
+        ),
       },
     ],
   },

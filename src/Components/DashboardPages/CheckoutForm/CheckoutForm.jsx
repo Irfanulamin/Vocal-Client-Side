@@ -96,6 +96,13 @@ const CheckoutForm = ({ cart, totalPrice }) => {
     <>
       <form className="w-2/3" onSubmit={handleSubmit}>
         <h2 className="text-lg">Please put your Card Details here.</h2>
+        <input
+          type="text"
+          name="name"
+          defaultValue={user?.displayName}
+          disabled
+        />
+        <input type="text" name="email" defaultValue={user?.email} disabled />
         <CardElement
           options={{
             style: {

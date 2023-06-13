@@ -45,7 +45,10 @@ const AddClasses = () => {
   };
 
   return (
-    <div className="w-full p-10">
+    <div className="w-full p-10 bg-base-300">
+      <h2 className="text-center text-4xl font-semibold text-black">
+        Add a Class
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-control">
           <label className="label">
