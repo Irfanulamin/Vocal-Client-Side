@@ -114,7 +114,7 @@ const CheckoutForm = ({ cart, totalPrice }) => {
         />
         <button
           type="submit"
-          className="px-7"
+          className="px-7 bg-black rounded text-white hover:bg-white hover:text-black transition-all py-2"
           disabled={!stripe || !clientSecret || processing}
         >
           Pay

@@ -55,11 +55,18 @@ const MyClasses = () => {
                     <span className="text-base ">{classDetails?.status}</span>
                   </td>
                   <td>0</td>
-                  <td></td>
+                  <td>
+                    {classDetails?.feedback ? (
+                      <p className="text-green-600">{classDetails?.feedback}</p>
+                    ) : (
+                      <></>
+                    )}
+                  </td>
                   {/* //put */}
                   <td>
                     <Link
                       to={`/dashboard/updateSingleClass/${classDetails?._id}`}
+                      className="p-2 bg-yellow-500 text-white"
                     >
                       Update
                     </Link>

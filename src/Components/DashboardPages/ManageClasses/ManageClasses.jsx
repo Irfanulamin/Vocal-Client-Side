@@ -1,9 +1,38 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import "./ManageClasses.css";
 
 const ManageClasses = () => {
   const [classes, setClasses] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [classDetail, setClassDetail] = useState([]);
+
+  const handleClick = (id) => {
+    const selectedClassDetails = classes.find(
+      (classDetails) => classDetails._id === id
+    );
+    setClassDetail(selectedClassDetails);
+    setShowModal(true);
+  };
+
+  const handleSubmit = (event) => {
+    setShowModal(false);
+    console.log("dfgd");
+    event.preventDefault();
+    const feedback = event.target.feedback.value;
+    console.log(feedback);
+    console.log(classDetail);
+
+    axios
+      .patch(
+        `http://localhost:5000/pendingClass/feedback/${classDetail?._id}`,
+        { feedback }
+      )
+      .then((res) => console.log(res))
+      .catch((error) => console.error(error));
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/pendingClassesDetails")
       .then((res) => res.json())
@@ -74,16 +103,24 @@ const ManageClasses = () => {
 
   return (
     <>
-      <input type="checkbox" id="my_modal_7" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box">
-          <h3 className="text-lg font-bold">Hello!</h3>
-          <p className="py-4">This modal works with a hidden checkbox!</p>
+      {showModal && (
+        <div className="absolute z-10">
+          <form onSubmit={handleSubmit} className="modal-box">
+            <h3 className="font-bold text-lg text-green-600">Feedback!</h3>
+            <hr className="border-2" />
+            <p className="py-4">
+              <input type="text" name="feedback" placeholder="feedback" />
+            </p>
+            <div>
+              <input
+                type="submit"
+                value="Submit"
+                className="py-2 px-4 bg-green-600 text-white"
+              />
+            </div>
+          </form>
         </div>
-        <label className="modal-backdrop" htmlFor="my_modal_7">
-          Close
-        </label>
-      </div>
+      )}
       <div className="p-10">
         <div className="mb-6">
           <h2 className="text-center text-2xl font-semibold text-black ">
@@ -126,28 +163,32 @@ const ManageClasses = () => {
                     <td>{classDetails?.available_seats}</td>
                     <td>{classDetails?.price}$</td>
                     <th>
-                      <button
-                        onClick={() => handleApprove(classDetails?._id)}
-                        className="btn bg-green-600 text-white rounded btn-xs"
-                      >
-                        Approve
-                      </button>
-                    </th>
-                    <th>
-                      <button
-                        onClick={() => handleDeny(classDetails?._id)}
-                        className="btn bg-red-600 text-white rounded btn-xs"
-                      >
-                        Deny
-                      </button>
-                    </th>
-                    <th>
-                      <label
-                        htmlFor="my_modal_7"
-                        className="btn bg-yellow-500 text-white rounded btn-xs"
-                      >
-                        Feedback
-                      </label>
+                      <div className="flex items-center justify-center gap-3">
+                        <div>
+                          <button
+                            onClick={() => handleApprove(classDetails?._id)}
+                            className="btn bg-green-600 text-white rounded btn-xs"
+                          >
+                            Approve
+                          </button>
+                        </div>
+                        <div>
+                          <button
+                            onClick={() => handleDeny(classDetails?._id)}
+                            className="btn bg-red-600 text-white rounded btn-xs"
+                          >
+                            Deny
+                          </button>
+                        </div>
+                        <div>
+                          <button
+                            onClick={() => handleClick(classDetails?._id)}
+                            className="btn bg-yellow-500 text-white rounded btn-xs"
+                          >
+                            Feedback
+                          </button>
+                        </div>
+                      </div>
                     </th>
                   </tr>
                 </>
