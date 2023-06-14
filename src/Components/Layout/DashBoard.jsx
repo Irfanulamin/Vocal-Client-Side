@@ -1,9 +1,16 @@
 import React, { useContext } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAdmin from "../../PrivateRoutes/useAdmin";
 import useStudent from "../../PrivateRoutes/useStudent";
 import useInstructor from "../../PrivateRoutes/useInstructor";
+import { AiOutlineHome, AiOutlineVideoCamera } from "react-icons/ai";
+import { FaHistory, FaPhotoVideo, FaUsersCog } from "react-icons/fa";
+import {
+  MdOutlineSettingsInputComposite,
+  MdOutlinePostAdd,
+} from "react-icons/md";
+import { SiGoogleclassroom } from "react-icons/si";
 
 const DashBoard = () => {
   const { user } = useContext(AuthContext);
@@ -64,6 +71,7 @@ const DashBoard = () => {
                 className={({ isActive }) => (isActive ? "active" : "inactive")}
                 to="/"
               >
+                <AiOutlineHome></AiOutlineHome>
                 Home
               </NavLink>
             </li>
@@ -75,6 +83,7 @@ const DashBoard = () => {
                     isActive ? "active" : "inactive"
                   }
                 >
+                  <FaUsersCog></FaUsersCog>
                   Manage Users
                 </NavLink>
               </li>
@@ -87,6 +96,7 @@ const DashBoard = () => {
                     isActive ? "active" : "inactive"
                   }
                 >
+                  <MdOutlineSettingsInputComposite></MdOutlineSettingsInputComposite>
                   Manage Classes
                 </NavLink>
               </li>
@@ -99,6 +109,7 @@ const DashBoard = () => {
                     isActive ? "active" : "inactive"
                   }
                 >
+                  <AiOutlineVideoCamera></AiOutlineVideoCamera>
                   My Selected Classes
                 </NavLink>
               </li>
@@ -113,6 +124,7 @@ const DashBoard = () => {
                     isActive ? "active" : "inactive"
                   }
                 >
+                  <MdOutlinePostAdd></MdOutlinePostAdd>
                   Add A Class
                 </NavLink>
               </li>
@@ -125,6 +137,7 @@ const DashBoard = () => {
                     isActive ? "active" : "inactive"
                   }
                 >
+                  <FaPhotoVideo></FaPhotoVideo>
                   My Classes
                 </NavLink>
               </li>
@@ -137,6 +150,7 @@ const DashBoard = () => {
                     isActive ? "active" : "inactive"
                   }
                 >
+                  <SiGoogleclassroom></SiGoogleclassroom>
                   My Enrolled Class
                 </NavLink>
               </li>
@@ -149,6 +163,7 @@ const DashBoard = () => {
                     isActive ? "active" : "inactive"
                   }
                 >
+                  <FaHistory></FaHistory>
                   My Payment History
                 </NavLink>
               </li>

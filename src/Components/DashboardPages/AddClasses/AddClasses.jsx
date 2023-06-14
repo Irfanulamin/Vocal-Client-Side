@@ -28,7 +28,7 @@ const AddClasses = () => {
     console.log(item);
 
     axios
-      .post("http://localhost:5000/pendingClasses", item)
+      .post("https://server-side-sand-omega.vercel.app/pendingClasses", item)
       .then((response) => {
         if (response.data.insertedId) {
           Swal.fire({

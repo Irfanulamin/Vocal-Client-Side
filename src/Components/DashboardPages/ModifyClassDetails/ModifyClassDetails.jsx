@@ -11,7 +11,9 @@ const ModifyClassDetails = () => {
   const params = useParams();
   const id = params.id;
   useEffect(() => {
-    fetch(`http://localhost:5000/pendingClasses?email=${user?.email}`)
+    fetch(
+      `https://server-side-sand-omega.vercel.app/pendingClasses?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         const selectedClass = data.find(
@@ -32,7 +34,7 @@ const ModifyClassDetails = () => {
 
     axios
       .put(
-        `http://localhost:5000/pendingClasses?email=${user?.email}`,
+        `https://server-side-sand-omega.vercel.app/pendingClasses?email=${user?.email}`,
         updatedItem
       )
       .then((response) => {

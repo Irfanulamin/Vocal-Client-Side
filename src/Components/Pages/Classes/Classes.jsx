@@ -11,7 +11,7 @@ const Classes = () => {
 
   const [classes, setClasses] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://server-side-sand-omega.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
@@ -50,7 +50,7 @@ const Classes = () => {
       console.log(item);
 
       axios
-        .post("http://localhost:5000/selectedItems", item)
+        .post("https://server-side-sand-omega.vercel.app/selectedItems", item)
         .then((response) => {
           if (response.data.insertedId) {
             Swal.fire({

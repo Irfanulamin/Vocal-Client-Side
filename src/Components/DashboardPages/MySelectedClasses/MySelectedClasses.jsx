@@ -19,7 +19,9 @@ const MySelectedClasses = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/selectedItems/${id}`)
+          .delete(
+            `https://server-side-sand-omega.vercel.app/selectedItems/${id}`
+          )
           .then((response) => {
             if (response.data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

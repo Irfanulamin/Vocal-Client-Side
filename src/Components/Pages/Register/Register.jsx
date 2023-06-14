@@ -43,7 +43,10 @@ const Register = () => {
                   role: "student",
                 };
                 axios
-                  .post("http://localhost:5000/users", saveUser)
+                  .post(
+                    "https://server-side-sand-omega.vercel.app/users",
+                    saveUser
+                  )
                   .then((response) => {
                     if (response.data.insertedId) {
                       Swal.fire({
@@ -76,7 +79,7 @@ const Register = () => {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://server-side-sand-omega.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

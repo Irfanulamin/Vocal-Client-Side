@@ -8,7 +8,7 @@ const ManageClasses = () => {
   const [classDetail, setClassDetail] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/pendingClassesDetails")
+    fetch("https://server-side-sand-omega.vercel.app/pendingClassesDetails")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);
@@ -33,7 +33,7 @@ const ManageClasses = () => {
 
     axios
       .patch(
-        `http://localhost:5000/pendingClass/feedback/${classDetail?._id}`,
+        `https://server-side-sand-omega.vercel.app/pendingClass/feedback/${classDetail?._id}`,
         { feedback }
       )
       .then((res) => console.log(res))
@@ -76,11 +76,16 @@ const ManageClasses = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .post("http://localhost:5000/classes", newClassDetails)
+          .post(
+            "https://server-side-sand-omega.vercel.app/classes",
+            newClassDetails
+          )
           .then((response) => {
             if (response?.data?.insertedId) {
               axios
-                .patch(`http://localhost:5000/pendingClass/approve/${_id}`)
+                .patch(
+                  `https://server-side-sand-omega.vercel.app/pendingClass/approve/${_id}`
+                )
                 .then((res) => console.log(res))
                 .catch((error) => console.error(error));
             }
@@ -95,7 +100,9 @@ const ManageClasses = () => {
 
   const handleDeny = (id) => {
     axios
-      .patch(`http://localhost:5000/pendingClass/deny/${id}`)
+      .patch(
+        `https://server-side-sand-omega.vercel.app/pendingClass/deny/${id}`
+      )
       .then((res) => console.log(res))
       .catch((error) => console.error(error));
   };

@@ -6,7 +6,9 @@ const MyClasses = () => {
   const [classes, setClasses] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/pendingClasses?email=${user?.email}`)
+    fetch(
+      `https://server-side-sand-omega.vercel.app/pendingClasses?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);

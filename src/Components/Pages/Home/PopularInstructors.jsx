@@ -4,7 +4,7 @@ const PopularInstructors = () => {
   const [instructor, setInstructors] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://server-side-sand-omega.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => {
         data.sort((a, b) => b.students - a.students);

@@ -1,17 +1,9 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import useStudent from "../../PrivateRoutes/useStudent";
-import useAdmin from "../../PrivateRoutes/useAdmin";
-import useInstructor from "../../PrivateRoutes/useInstructor";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [isStudent] = useStudent();
-  const [isInstructor] = useInstructor();
-  const [isAdmin] = useAdmin();
-
-  console.log(user);
 
   const handleLogout = () => {
     logOut()
@@ -52,12 +44,14 @@ const Navbar = () => {
           Classes
         </NavLink>
 
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) => (isActive ? "active" : "inactive")}
-        >
-          Dashboard
-        </NavLink>
+        {user && (
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) => (isActive ? "active" : "inactive")}
+          >
+            Dashboard
+          </NavLink>
+        )}
 
         {user?.photoURL && (
           <div className="avatar online">

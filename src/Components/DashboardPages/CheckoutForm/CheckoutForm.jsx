@@ -87,24 +87,28 @@ const CheckoutForm = ({ cart, totalPrice, id, name, image }) => {
         image: image,
       };
       console.log(payment);
-      axios.post("http://localhost:5000/payments", payment).then((res) => {
-        if (res.data.insertedId) {
-          Swal.fire({
-            icon: "Success",
-            title: "Check out your Enroll Class Section",
-            text: "",
-            footer: "",
-          });
-          axios
-            .delete(`http://localhost:5000/selectedItems/${id}`)
-            .then((response) => {
-              console.log(response.data.deletedCount);
-            })
-            .catch((error) => {
-              console.error(error);
+      axios
+        .post("https://server-side-sand-omega.vercel.app/payments", payment)
+        .then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              icon: "Success",
+              title: "Check out your Enroll Class Section",
+              text: "",
+              footer: "",
             });
-        }
-      });
+            axios
+              .delete(
+                `https://server-side-sand-omega.vercel.app/selectedItems/${id}`
+              )
+              .then((response) => {
+                console.log(response.data.deletedCount);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }
+        });
     }
   };
 

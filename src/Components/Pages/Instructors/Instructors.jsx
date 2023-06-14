@@ -5,7 +5,7 @@ import InstructorCard from "./InstructorCard";
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://server-side-sand-omega.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => setInstructors(data));
   }, []);

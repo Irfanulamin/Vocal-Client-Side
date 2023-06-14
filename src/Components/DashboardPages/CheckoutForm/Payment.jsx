@@ -15,7 +15,9 @@ const Payment = () => {
   const [cart] = useCart();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/selectedItems?userEmail=${user?.email}`)
+    fetch(
+      `https://server-side-sand-omega.vercel.app/selectedItems?userEmail=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data) {

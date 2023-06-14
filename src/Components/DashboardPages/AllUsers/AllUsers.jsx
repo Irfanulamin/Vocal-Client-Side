@@ -9,7 +9,7 @@ const AllUsers = () => {
 
   const handleAdmin = (id) => {
     axios
-      .patch(`http://localhost:5000/users/admin/${id}`)
+      .patch(`https://server-side-sand-omega.vercel.app/users/admin/${id}`)
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           Swal.fire({
@@ -27,7 +27,7 @@ const AllUsers = () => {
 
   const handleInstructor = (id) => {
     axios
-      .patch(`http://localhost:5000/users/instructor/${id}`)
+      .patch(`https://server-side-sand-omega.vercel.app/users/instructor/${id}`)
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           Swal.fire({

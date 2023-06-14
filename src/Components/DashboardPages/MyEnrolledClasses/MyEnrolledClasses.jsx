@@ -6,7 +6,9 @@ const MyEnrolledClasses = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/payments?email=${user?.email}`)
+    fetch(
+      `https://server-side-sand-omega.vercel.app/payments?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);

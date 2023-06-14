@@ -7,7 +7,9 @@ const useAllusers = () => {
     queryKey: ["carts", user?.email],
     enabled: !loading,
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users`);
+      const res = await fetch(
+        `https://server-side-sand-omega.vercel.app/users`
+      );
       return res.json();
     },
   });

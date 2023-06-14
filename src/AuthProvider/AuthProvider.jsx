@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser?.email) {
-        fetch(`http://localhost:5000/jwt`, {
+        fetch(`https://server-side-sand-omega.vercel.app/jwt`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

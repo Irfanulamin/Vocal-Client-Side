@@ -49,7 +49,7 @@ const Login = () => {
           email: loggedInUser.email,
           role: "student",
         };
-        fetch("http://localhost:5000/users", {
+        fetch("https://server-side-sand-omega.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

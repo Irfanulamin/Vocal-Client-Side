@@ -12,7 +12,7 @@ const useCart = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/selectedItems?userEmail=${user?.email}`,
+        `https://server-side-sand-omega.vercel.app/selectedItems?userEmail=${user?.email}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access-token")}`,
