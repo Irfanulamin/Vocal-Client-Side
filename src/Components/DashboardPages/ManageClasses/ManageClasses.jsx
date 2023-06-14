@@ -7,6 +7,9 @@ const ManageClasses = () => {
   const [classes, setClasses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [classDetail, setClassDetail] = useState([]);
+  const [disableApprove, setDisableApprove] = useState(false);
+  const [disableDeny, setDisableDeny] = useState(false);
+  const [disableFeedback, setDisableFeedback] = useState(false);
 
   const handleClick = (id) => {
     const selectedClassDetails = classes.find(
@@ -101,6 +104,8 @@ const ManageClasses = () => {
       .catch((error) => console.error(error));
   };
 
+  const reversedClasses = [...classes].reverse();
+
   return (
     <>
       {showModal && (
@@ -144,7 +149,7 @@ const ManageClasses = () => {
               </tr>
             </thead>
             <tbody>
-              {classes.map((classDetails, index) => (
+              {reversedClasses.map((classDetails, index) => (
                 <>
                   <tr>
                     <th>{index + 1}</th>

@@ -10,7 +10,7 @@ const StudentRoute = ({ children }) => {
 
   if (loading || isStudentLoading) {
     return (
-      <div className="py-56">
+      <div className="w-full h-full flex justify-center items-center">
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     );

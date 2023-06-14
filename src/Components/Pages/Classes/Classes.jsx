@@ -64,7 +64,11 @@ const Classes = () => {
           console.error(error);
         });
     } else {
-      alert("jai login kore aso");
+      Swal.fire(
+        "Please Login, Before adding to cart",
+        "Login, Now.To Enroll your Fav Classes",
+        "question"
+      );
       navigate("/login");
     }
   };

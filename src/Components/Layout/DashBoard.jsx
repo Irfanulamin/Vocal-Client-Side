@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAdmin from "../../PrivateRoutes/useAdmin";
 import useStudent from "../../PrivateRoutes/useStudent";
@@ -50,6 +50,26 @@ const DashBoard = () => {
               </span> */}
             </li>
             <hr />
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "inactive")}
+                to="/"
+              >
+                Home
+              </NavLink>
+            </li>
+            {isAdmin && (
+              <li>
+                <NavLink
+                  to="/dashboard/allusers"
+                  className={({ isActive }) =>
+                    isActive ? "active" : "inactive"
+                  }
+                >
+                  Manage Users
+                </NavLink>
+              </li>
+            )}
             {isAdmin && (
               <li>
                 <NavLink
@@ -74,15 +94,15 @@ const DashBoard = () => {
                 </NavLink>
               </li>
             )}
-            {isAdmin && (
+            {isInstructor && (
               <li>
                 <NavLink
-                  to="/dashboard/allusers"
+                  to="/dashboard/myClasses"
                   className={({ isActive }) =>
                     isActive ? "active" : "inactive"
                   }
                 >
-                  Manage Users
+                  My Classes
                 </NavLink>
               </li>
             )}
@@ -97,18 +117,6 @@ const DashBoard = () => {
                   }
                 >
                   Add A Class
-                </NavLink>
-              </li>
-            )}
-            {isInstructor && (
-              <li>
-                <NavLink
-                  to="/dashboard/myClasses"
-                  className={({ isActive }) =>
-                    isActive ? "active" : "inactive"
-                  }
-                >
-                  My Classes
                 </NavLink>
               </li>
             )}

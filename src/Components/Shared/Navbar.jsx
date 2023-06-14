@@ -1,9 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useStudent from "../../PrivateRoutes/useStudent";
+import useAdmin from "../../PrivateRoutes/useAdmin";
+import useInstructor from "../../PrivateRoutes/useInstructor";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isStudent] = useStudent();
+  const [isInstructor] = useInstructor();
+  const [isAdmin] = useAdmin();
 
   console.log(user);
 
@@ -45,9 +51,25 @@ const Navbar = () => {
         >
           Classes
         </NavLink>
-        {user && (
+        {isStudent && (
           <NavLink
-            to="/dashboard"
+            to="/dashboard/selectedClasses"
+            className={({ isActive }) => (isActive ? "active" : "inactive")}
+          >
+            Dashboard
+          </NavLink>
+        )}
+        {isInstructor && (
+          <NavLink
+            to="/dashboard/myClasses"
+            className={({ isActive }) => (isActive ? "active" : "inactive")}
+          >
+            Dashboard
+          </NavLink>
+        )}
+        {isAdmin && (
+          <NavLink
+            to="/dashboard/allusers"
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
             Dashboard

@@ -9,6 +9,8 @@ const PaymentHistory = () => {
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
+
+  const reversedClasses = [...classes].reverse();
   return (
     <div className="py-12 px-6">
       <table className="w-full">
@@ -24,7 +26,7 @@ const PaymentHistory = () => {
           <hr className="border-black border" />
         </thead>
         <tbody>
-          {classes.reverse().map((classDetails) => (
+          {reversedClasses.map((classDetails) => (
             <tr key={classDetails._id}>
               <td className="py-2 px-4 font-semibold text-green-600">
                 {classDetails.transactionID}

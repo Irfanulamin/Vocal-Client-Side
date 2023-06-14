@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const { signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,30 +36,32 @@ const Login = () => {
           navigate(from, { replace: true });
         }
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => setError(err.message));
   };
 
   const handleGoogleSignIn = () => {
-    signInWithGoogle().then((result) => {
-      const loggedInUser = result.user;
-      console.log(loggedInUser);
-      const saveUser = {
-        name: loggedInUser.displayName,
-        email: loggedInUser.email,
-        role: "student",
-      };
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(saveUser),
+    signInWithGoogle()
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const saveUser = {
+          name: loggedInUser.displayName,
+          email: loggedInUser.email,
+          role: "student",
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            navigate(from, { replace: true });
+          });
       })
-        .then((res) => res.json())
-        .then(() => {
-          navigate(from, { replace: true });
-        });
-    });
+      .catch((err) => setError(err.message));
   };
 
   return (
@@ -124,6 +127,7 @@ const Login = () => {
               </Link>
             </label>
           </div>
+          {error && <p className="text-red-6000">{error}</p>}
           <input
             type="submit"
             value="Login"

@@ -8,6 +8,7 @@ import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
+  const [err, setErr] = useState("");
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const { createUser, updateUserProfile, signInWithGoogle } =
@@ -59,7 +60,7 @@ const Register = () => {
                   });
               })
               .catch((err) => {
-                console.log(err.message);
+                setErr(err.message);
               });
           }
         })
@@ -208,6 +209,7 @@ const Register = () => {
               </Link>
             </label>
           </div>
+          {err && <p>{err}</p>}
           <input
             type="submit"
             value="Register"

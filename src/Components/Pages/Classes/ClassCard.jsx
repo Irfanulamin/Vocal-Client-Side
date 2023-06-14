@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useAdmin from "../../../PrivateRoutes/useAdmin";
+import useInstructor from "../../../PrivateRoutes/useInstructor";
 
 const ClassCard = ({ classDetails, handleSelect }) => {
   const [disable, setDisable] = useState(false);
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+  const [background, setBackgroundColor] = useState(false);
+
+  useEffect(() => {
+    if (isAdmin) {
+      setDisable(true);
+      console.log(true);
+    } else if (isInstructor) {
+      setDisable(true);
+      console.log(true);
+    }
+  }, []);
 
   const handleBothClicks = (id) => {
     handleSelect(id);
@@ -17,8 +32,19 @@ const ClassCard = ({ classDetails, handleSelect }) => {
     students,
     instructor_name,
   } = classDetails;
+
+  useEffect(() => {
+    if (classDetails?.available_seats === 0) {
+      setDisable(true);
+      setBackgroundColor(true);
+    }
+  }, [classDetails?.available_seats]);
   return (
-    <div className="bg-base-200 p-6 border border-black">
+    <div
+      className={`${
+        background ? "bg-red-500" : "bg-base-200"
+      } p-6 border border-black`}
+    >
       <img
         src={class_image}
         className="w-full h-52 md:h-56 lg:h-72 object-cover border border-black"
@@ -37,8 +63,10 @@ const ClassCard = ({ classDetails, handleSelect }) => {
       <button
         onClick={() => handleBothClicks(_id)}
         className={`${
-          disable ? "btn-disabled bg-slate-200 text-slate-400" : ""
-        } w-full bg-yellow-500 my-2 py-2 tracking-widest font-medium  text-xl hover:bg-black text-white transition`}
+          disable
+            ? "btn-disabled bg-slate-200 text-slate-400"
+            : "bg-yellow-500 hover:bg-black"
+        } btn w-full  my-2 py-2 tracking-widest font-medium  text-xl  text-white transition`}
       >
         Select
       </button>
