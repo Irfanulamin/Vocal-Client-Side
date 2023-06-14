@@ -1,25 +1,42 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import useCart from "../../../hooks/useCart";
+import { useParams } from "react-router-dom";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PK);
 const Payment = () => {
+  const params = useParams();
+  const id = params.id;
+  const { user } = useContext(AuthContext);
+  const [selectedClassdetails, setSelectedClassDetails] = useState([]);
   const [cart] = useCart();
-  const amount = cart.reduce(
-    (sum, classDetails) => sum + classDetails.class_price,
-    0
-  );
 
-  const totalPrice = parseInt(amount.toFixed(2));
-  console.log(totalPrice);
+  useEffect(() => {
+    fetch(`http://localhost:5000/selectedItems?userEmail=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          const selectedItem = cart.find((allClasses) => allClasses._id === id);
+          console.log(selectedItem);
+          setSelectedClassDetails(selectedItem);
+        }
+      });
+  }, []);
 
   return (
     <div className="w-full p-10 flex justify-center items-center">
       <div className="w-full">
         <Elements stripe={stripePromise}>
-          <CheckoutForm cart={cart} totalPrice={totalPrice}></CheckoutForm>
+          <CheckoutForm
+            selectedClassdetails={selectedClassdetails}
+            totalPrice={selectedClassdetails?.class_price}
+            image={selectedClassdetails?.class_image}
+            name={selectedClassdetails?.class_name}
+            id={selectedClassdetails?._id}
+          ></CheckoutForm>
         </Elements>
       </div>
     </div>

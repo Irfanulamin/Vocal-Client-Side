@@ -1,15 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import "./ManageClasses.css";
 
 const ManageClasses = () => {
   const [classes, setClasses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [classDetail, setClassDetail] = useState([]);
-  const [disableApprove, setDisableApprove] = useState(false);
-  const [disableDeny, setDisableDeny] = useState(false);
-  const [disableFeedback, setDisableFeedback] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/pendingClassesDetails")
+      .then((res) => res.json())
+      .then((data) => {
+        setClasses(data);
+      });
+  }, []);
 
   const handleClick = (id) => {
     const selectedClassDetails = classes.find(
@@ -35,14 +39,6 @@ const ManageClasses = () => {
       .then((res) => console.log(res))
       .catch((error) => console.error(error));
   };
-
-  useEffect(() => {
-    fetch("http://localhost:5000/pendingClassesDetails")
-      .then((res) => res.json())
-      .then((data) => {
-        setClasses(data);
-      });
-  }, []);
 
   const handleApprove = (id) => {
     const selectedClassDetails = classes.find(
@@ -150,53 +146,51 @@ const ManageClasses = () => {
             </thead>
             <tbody>
               {reversedClasses.map((classDetails, index) => (
-                <>
-                  <tr>
-                    <th>{index + 1}</th>
-                    <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle w-16 h-16">
-                            <img src="/tailwind-css-component-profile-2@56w.png" />
-                          </div>
+                <tr key={index}>
+                  <th>{index + 1}</th>
+                  <td>
+                    <div className="flex items-center space-x-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-16 h-16">
+                          <img src={classDetails?.class_image} />
                         </div>
                       </div>
-                    </td>
-                    <td>{classDetails?.class_name}</td>
-                    <td>{classDetails?.instructor_name}</td>
-                    <td>{classDetails?.email}</td>
-                    <td>{classDetails?.available_seats}</td>
-                    <td>{classDetails?.price}$</td>
-                    <th>
-                      <div className="flex items-center justify-center gap-3">
-                        <div>
-                          <button
-                            onClick={() => handleApprove(classDetails?._id)}
-                            className="btn bg-green-600 text-white rounded btn-xs"
-                          >
-                            Approve
-                          </button>
-                        </div>
-                        <div>
-                          <button
-                            onClick={() => handleDeny(classDetails?._id)}
-                            className="btn bg-red-600 text-white rounded btn-xs"
-                          >
-                            Deny
-                          </button>
-                        </div>
-                        <div>
-                          <button
-                            onClick={() => handleClick(classDetails?._id)}
-                            className="btn bg-yellow-500 text-white rounded btn-xs"
-                          >
-                            Feedback
-                          </button>
-                        </div>
+                    </div>
+                  </td>
+                  <td>{classDetails?.class_name}</td>
+                  <td>{classDetails?.instructor_name}</td>
+                  <td>{classDetails?.email}</td>
+                  <td>{classDetails?.available_seats}</td>
+                  <td>{classDetails?.price}$</td>
+                  <th>
+                    <div className="flex items-center justify-center gap-3">
+                      <div>
+                        <button
+                          onClick={() => handleApprove(classDetails?._id)}
+                          className="btn bg-green-600 text-white rounded btn-xs"
+                        >
+                          Approve
+                        </button>
                       </div>
-                    </th>
-                  </tr>
-                </>
+                      <div>
+                        <button
+                          onClick={() => handleDeny(classDetails?._id)}
+                          className="btn bg-red-600 text-white rounded btn-xs"
+                        >
+                          Deny
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          onClick={() => handleClick(classDetails?._id)}
+                          className="btn bg-yellow-500 text-white rounded btn-xs"
+                        >
+                          Feedback
+                        </button>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
               ))}
             </tbody>
           </table>

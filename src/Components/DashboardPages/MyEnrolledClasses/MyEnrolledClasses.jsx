@@ -11,29 +11,36 @@ const MyEnrolledClasses = () => {
       .then((data) => setClasses(data));
   }, []);
 
+  const reversedClasses = [...classes].reverse();
   return (
     <div className=" p-20">
       <h2 className="text-center text-3xl text-black mb-7">
         My Enrolled Classes
       </h2>
-      {classes.map((classDetails) => (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20">
-          {classDetails?.image.map((image) => (
-            <div className="bg-base-200 p-3 border  border-black">
-              <img
-                src={image}
-                className="h-44 w-full bg-base-200 border border-black"
-              />
-              <div className="py-3 px-2 flex justify-between items-center">
-                <p>Start your journey</p>
-                <div className="hover:bg-black p-2 rounded-full transition-all hover:text-white">
-                  <AiOutlineArrowRight></AiOutlineArrowRight>
-                </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+        {reversedClasses.map((classDetails) => (
+          <div
+            key={classDetails?._id}
+            className="bg-base-200 p-3 border  border-black"
+          >
+            <img
+              src={classDetails?.image}
+              className="h-44 w-full bg-base-200 border border-black"
+            />
+            <div className="py-3 px-2 flex justify-between items-center">
+              <div>
+                <p className="text-wide text-lg font-semibold">
+                  {classDetails?.itemName}
+                </p>
+                <p className="text-sm">Start your journey</p>
+              </div>
+              <div className="hover:bg-black p-2 rounded-full transition-all hover:text-white">
+                <AiOutlineArrowRight></AiOutlineArrowRight>
               </div>
             </div>
-          ))}
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

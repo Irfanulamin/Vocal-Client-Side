@@ -24,11 +24,13 @@ import AdminRoute from "./PrivateRoutes/AdminRoute";
 import StudentRoute from "./PrivateRoutes/StudentRoute";
 import PrivateRoute from "./PrivateRoutes/PrivateRoute";
 import InstructorRoute from "./PrivateRoutes/InstructorRoute";
+import ErrorPage from "./Components/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -101,7 +103,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "payment",
+        path: "payment/:id",
         element: (
           <StudentRoute>
             <Payment></Payment>

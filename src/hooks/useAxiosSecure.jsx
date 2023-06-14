@@ -5,10 +5,10 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const useAxiosSecure = () => {
   const { logOut } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "http://localhost:5000/",
   });
 
   useEffect(() => {
@@ -28,12 +28,12 @@ const useAxiosSecure = () => {
           (error.response.status === 401 || error.response.status === 403)
         ) {
           await logOut();
-          navigate("/login");
+          // navigate("/login");
         }
         return Promise.reject(error);
       }
     );
-  }, [logOut, navigate, axiosSecure]);
+  }, [logOut, axiosSecure]);
 
   return [axiosSecure];
 };

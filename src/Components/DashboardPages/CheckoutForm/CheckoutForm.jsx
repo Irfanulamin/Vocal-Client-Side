@@ -4,8 +4,9 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import "./card.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-const CheckoutForm = ({ cart, totalPrice }) => {
+const CheckoutForm = ({ cart, totalPrice, id, name, image }) => {
   const { user } = useContext(AuthContext);
   const [carderror, setCardError] = useState("");
   const stripe = useStripe();
@@ -16,16 +17,18 @@ const CheckoutForm = ({ cart, totalPrice }) => {
   const [transactionID, setTransactionID] = useState("");
 
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", {
-        totalPrice,
-      })
-      .then((response) => {
-        setClientSecret(response.data.clientSecret);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (totalPrice) {
+      axiosSecure
+        .post("/create-payment-intent", {
+          totalPrice,
+        })
+        .then((response) => {
+          setClientSecret(response.data.clientSecret);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }, [totalPrice]);
 
   const handleSubmit = async (event) => {
@@ -73,20 +76,33 @@ const CheckoutForm = ({ cart, totalPrice }) => {
     setProcessing(false);
     if (paymentIntent?.status === "succeeded") {
       setTransactionID(paymentIntent?.id);
+      console.log(cart);
       const payment = {
         email: user?.email,
         transactionID: paymentIntent.id,
         totalPrice,
         date: new Date(),
-        orderStatus: "Service Pending",
-        quantity: cart.length,
-        items: cart.map((item) => item._id),
-        itemNames: cart.map((item) => item.class_name),
-        image: cart.map((item) => item.class_image),
+        item: id,
+        itemName: name,
+        image: image,
       };
+      console.log(payment);
       axios.post("http://localhost:5000/payments", payment).then((res) => {
         if (res.data.insertedId) {
-          alert("done");
+          Swal.fire({
+            icon: "Success",
+            title: "Check out your Enroll Class Section",
+            text: "",
+            footer: "",
+          });
+          axios
+            .delete(`http://localhost:5000/selectedItems/${id}`)
+            .then((response) => {
+              console.log(response.data.deletedCount);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         }
       });
     }

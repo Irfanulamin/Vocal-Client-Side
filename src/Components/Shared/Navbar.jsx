@@ -51,30 +51,14 @@ const Navbar = () => {
         >
           Classes
         </NavLink>
-        {isStudent && (
-          <NavLink
-            to="/dashboard/selectedClasses"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            Dashboard
-          </NavLink>
-        )}
-        {isInstructor && (
-          <NavLink
-            to="/dashboard/myClasses"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            Dashboard
-          </NavLink>
-        )}
-        {isAdmin && (
-          <NavLink
-            to="/dashboard/allusers"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            Dashboard
-          </NavLink>
-        )}
+
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) => (isActive ? "active" : "inactive")}
+        >
+          Dashboard
+        </NavLink>
+
         {user?.photoURL && (
           <div className="avatar online">
             <div className="w-10 rounded-full">

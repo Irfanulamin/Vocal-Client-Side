@@ -12,7 +12,7 @@ const PaymentHistory = () => {
 
   const reversedClasses = [...classes].reverse();
   return (
-    <div className="py-12 px-6">
+    <div className="p-12 bg-yellow-100 mt-16">
       <table className="w-full">
         <thead>
           <tr>
@@ -20,8 +20,6 @@ const PaymentHistory = () => {
             <th className="py-2 px-4 text-lg font-semibold">Email</th>
             <th className="py-2 px-4 text-lg font-semibold">Total Price</th>
             <th className="py-2 px-4 text-lg font-semibold">Order Date</th>
-            <th className="py-2 px-4 text-lg font-semibold">Order Status</th>
-            <th className="py-2 px-4 text-lg font-semibold">Quantity</th>
           </tr>
           <hr className="border-black border" />
         </thead>
@@ -33,15 +31,9 @@ const PaymentHistory = () => {
               </td>
               <td className="py-2 px-4 font-semibold">{classDetails.email}</td>
               <td className="py-2 px-4 font-semibold text-red-600">
-                {classDetails.totalPrice}
+                {classDetails.totalPrice}$
               </td>
               <td className="py-2 px-4  font-semibold">{classDetails.date}</td>
-              <td className="py-2 px-4 text-yellow-500 font-semibold">
-                {classDetails.orderStatus}
-              </td>
-              <td className="py-2 px-4 font-semibold">
-                {classDetails.quantity}
-              </td>
             </tr>
           ))}
         </tbody>

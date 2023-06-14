@@ -11,8 +11,6 @@ const MyClasses = () => {
       .then((data) => setClasses(data));
   }, []);
 
-  const reversedClasses = [...classes].reverse();
-
   return (
     <>
       <div>
@@ -32,7 +30,7 @@ const MyClasses = () => {
               </tr>
             </thead>
             <tbody>
-              {reversedClasses.map((classDetails, index) => (
+              {classes.map((classDetails, index) => (
                 <tr key={classDetails?._id}>
                   <th>{index + 1}</th>
                   <td>

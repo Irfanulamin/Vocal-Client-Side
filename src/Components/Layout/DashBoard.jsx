@@ -35,10 +35,19 @@ const DashBoard = () => {
                   <img src={user?.photoURL} />
                 </div>
               </div>
-              <div className="p-2">
-                <p className="text-lg font-semibold text-black">
-                  {user?.displayName}
-                </p>
+              <div className="p-2 flex justify-center items-center">
+                <div>
+                  <p className="text-lg font-semibold text-black">
+                    {user?.displayName}
+                  </p>
+                </div>
+                <div className="p-2">
+                  <p className="text-xs font-semibold text-green-600">
+                    {isAdmin && "Admin"}
+                    {isInstructor && "Instructor"}
+                    {isStudent && "Student"}
+                  </p>
+                </div>
               </div>
               <div className="p-2">
                 <p className="text-base font-semibold text-green-600">
@@ -95,18 +104,6 @@ const DashBoard = () => {
               </li>
             )}
             {isInstructor && (
-              <li>
-                <NavLink
-                  to="/dashboard/myClasses"
-                  className={({ isActive }) =>
-                    isActive ? "active" : "inactive"
-                  }
-                >
-                  My Classes
-                </NavLink>
-              </li>
-            )}
-            {isInstructor && (
               <li
                 className={({ isActive }) => (isActive ? "active" : "inactive")}
               >
@@ -117,6 +114,18 @@ const DashBoard = () => {
                   }
                 >
                   Add A Class
+                </NavLink>
+              </li>
+            )}
+            {isInstructor && (
+              <li>
+                <NavLink
+                  to="/dashboard/myClasses"
+                  className={({ isActive }) =>
+                    isActive ? "active" : "inactive"
+                  }
+                >
+                  My Classes
                 </NavLink>
               </li>
             )}

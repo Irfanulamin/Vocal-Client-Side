@@ -5,14 +5,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const MySelectedClasses = () => {
-  const [cart, refetch, error] = useCart();
-
-  const amount = cart.reduce(
-    (sum, classDetails) => sum + classDetails.class_price,
-    0
-  );
-
-  const totalPrice = parseFloat(amount.toFixed(2));
+  const [cart, refetch] = useCart();
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -73,7 +66,7 @@ const MySelectedClasses = () => {
               </thead>
               <tbody>
                 {cart.reverse().map((classDetails, index) => (
-                  <tr>
+                  <tr key={index}>
                     <th>{index + 1}</th>
                     <td>
                       <div className="avatar">
@@ -103,6 +96,16 @@ const MySelectedClasses = () => {
                       </span>
                     </td>
                     <td>
+                      <div>
+                        <Link
+                          to={`/dashboard/payment/${classDetails?._id}`}
+                          className="bg-black w-full px-7 text-white font-semibold text-lg py-1 rounded hover:bg-white hover:text-black transition-all"
+                        >
+                          Pay
+                        </Link>
+                      </div>
+                    </td>
+                    <td>
                       <button
                         onClick={() => handleDelete(classDetails?._id)}
                         className="btn btn-xs border-none bg-red-600 hover:bg-white hover:text-red-600 text-white font-semibold"
@@ -114,25 +117,6 @@ const MySelectedClasses = () => {
                 ))}
               </tbody>
             </table>
-          </div>
-          <hr className="border-2 border-black" />
-          <div className="p-4 flex justify-end w-full">
-            <div>
-              <p className="text-lg font-semibold">
-                Total Price:
-                <span className="text-green-600"> {totalPrice}$</span>
-              </p>
-            </div>
-          </div>
-          <div className="flex justify-end ">
-            <div>
-              <Link
-                to="/dashboard/payment"
-                className="bg-black w-full px-7 text-white font-semibold text-lg py-1 rounded hover:bg-white hover:text-black transition-all"
-              >
-                Pay
-              </Link>
-            </div>
           </div>
         </>
       )}

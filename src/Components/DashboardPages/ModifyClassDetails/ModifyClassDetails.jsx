@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ModifyClassDetails = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +14,6 @@ const ModifyClassDetails = () => {
     fetch(`http://localhost:5000/pendingClasses?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const selectedClass = data.find(
           (classdetails) => classdetails?._id === id
         );
@@ -36,7 +36,14 @@ const ModifyClassDetails = () => {
         updatedItem
       )
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        if (response.data) {
+          Swal.fire({
+            icon: "success",
+            title: "Your data Has been updated",
+            text: "wait for admin approval!",
+          });
+        }
       })
       .catch((error) => {
         console.error("Error updating class:", error);

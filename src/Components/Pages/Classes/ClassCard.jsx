@@ -16,7 +16,7 @@ const ClassCard = ({ classDetails, handleSelect }) => {
       setDisable(true);
       console.log(true);
     }
-  }, []);
+  }, [isAdmin, isInstructor]);
 
   const handleBothClicks = (id) => {
     handleSelect(id);
