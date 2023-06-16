@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 const ErrorPage = () => {
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center">
-      <div
-        className="
-      "
-      >
+      <div>
+        <img src="/error.jpg" className="w-36 h-36 object-cover" />
+      </div>
+      <div>
         <p className="text-center text-3xl  font-sans font-semibold mb-3">
           Opps , something went wrong!!
         </p>
